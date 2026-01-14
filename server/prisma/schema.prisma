@@ -1,0 +1,52 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String        @id @default(uuid())
+  email        String        @unique
+  passwordHash String
+  name         String
+  role         String        @default("customer") // "customer" | "admin"
+  kycStatus    String        @default("pending")  // "pending" | "processing" | "approved" | "manual-review"
+  riskScore    Int           @default(0)
+  balance      Float         @default(0)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  kycRecord    KYCRecord?
+  transactionsSent     Transaction[] @relation("SentTransactions")
+  transactionsReceived Transaction[] @relation("ReceivedTransactions")
+}
+
+model KYCRecord {
+  id             String   @id @default(uuid())
+  userId         String   @unique
+  user           User     @relation(fields: [userId], references: [id])
+  panNumber      String?
+  idProofType    String?
+  idProofNumber  String?
+  status         String   @default("pending")
+  faceMatchScore Int      @default(0)
+  submittedAt    DateTime @default(now())
+}
+
+model Transaction {
+  id            String   @id @default(uuid())
+  amount        Float
+  fromUserId    String
+  fromUser      User     @relation("SentTransactions", fields: [fromUserId], references: [id])
+  toUserId      String?
+  toUser        User?    @relation("ReceivedTransactions", fields: [toUserId], references: [id])
+  toAccount     String?  // For display purposes if external
+  timestamp     DateTime @default(now())
+  status        String   @default("clear") // "clear" | "flagged" | "blocked"
+  riskScore     Int      @default(0)
+  aiExplanation String?
+  country       String?  @default("India")
+  reason        String?
+}

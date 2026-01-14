@@ -1,0 +1,8 @@
+deepface
+easyocr
+fuzzywuzzy
+opencv-python
+tf-keras
+pymupdf
+numpy
+python-Levenshtein
