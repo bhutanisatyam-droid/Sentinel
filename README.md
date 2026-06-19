@@ -74,7 +74,7 @@ Sentinel is a next-generation, hybrid-intelligence compliance platform designed 
 Sentinel is a domain-driven collaborative project, with core modules developed by:
 
 - **[Satyam Bhutiani](https://github.com/bhutanisatyam-droid)** - Architected and developed the **KYC Module** end-to-end, including both the frontend interfaces and backend services (Identity Verification APIs, Active Liveness UI, and Zero-Knowledge PII Tokenization logic).
-- **Mehul Bhirud** - Architected and developed the **AML Module** end-to-end, including both the frontend Compliance Dashboard and backend services (Hybrid Detection Engine, Graph Intelligence integration, and Anomaly Detection ML Models).
+- **[Mehul Bhirud](https://github.com/mehul-bhirud)** - Architected and developed the **AML Module** end-to-end, including both the frontend Compliance Dashboard and backend services (Hybrid Detection Engine, Graph Intelligence integration, and Anomaly Detection ML Models).
 
 ---
 *Built to bring extreme transparency and security to modern financial ecosystems.*
